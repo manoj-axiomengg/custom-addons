@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_knk" model="ir.ui.view">
+        <field name="name">sale.order.form.knk</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add fields below customer -->
+             <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="attention" Invisible = "(state != draft) AND (state != sent)" />
+                        <!-- <field name="fax"/> -->
+                        <field name="customer_rfq"/>
+                        <field name="delivery_terms"/>
+                        
+                    
+            </xpath>
+             <xpath expr="//field[@name='payment_term_id']" position="after">
+                        
+                        <field name="manufacturer"/>
+                        <field name="delivery_period"/>
+                    
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
