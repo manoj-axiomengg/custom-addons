@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_line,access_crm_lead_line,model_crm_lead_line,,1,1,1,1
+access_crm_lead_inherit,access_crm_lead_inherit,model_crm_lead,base.group_user,1,1,1,1
+access_sale_order_lead,access_sale_order_lead,model_sale_order,base.group_user,1,1,1,1
+
+access_crm_reject_wizard,access_crm_reject_wizard,model_crm_reject_wizard,,1,1,1,1

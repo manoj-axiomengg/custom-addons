@@ -6,19 +6,22 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
-            <!-- Add fields below customer -->
+           
              <xpath expr="//field[@name='partner_id']" position="after">
-                        <field name="attention" Invisible = "(state != draft) AND (state != sent)" />
+                        <field name="attention" invisible="state != 'draft' and state != 'sent'"/>
                         <!-- <field name="fax"/> -->
-                        <field name="customer_rfq"/>
-                        <field name="delivery_terms"/>
+                        <field name="customer_rfq" invisible="state != 'draft' and state != 'sent'"/>
+                        <field name="delivery_terms" invisible="state != 'draft' and state != 'sent'"/>
+                        <field name="x_contract_no" invisible="state != 'sale'"/>
                         
                     
             </xpath>
              <xpath expr="//field[@name='payment_term_id']" position="after">
                         
-                        <field name="manufacturer"/>
-                        <field name="delivery_period"/>
+                        <field name="manufacturer" invisible="state != 'draft' and state != 'sent'"/>
+                        <field name="delivery_period" invisible="state != 'draft' and state != 'sent'"/>
+                        <field name="x_kwgm_qtn" invisible="state != 'sale'"/>
+                        <field name="x_cust_po_type" invisible="state != 'sale'"/>
                     
             </xpath>
 

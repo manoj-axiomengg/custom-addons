@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <!-- <record id="view_crm_lead_quick_create_inherit_custom" model="ir.ui.view">
+        <field name="name">crm.lead.quick.create.inherit.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <div 
+                     class="text-primary fw-bold"
+                     style="font-size: 14px; margin-bottom: 2px;">
+                    <field name="custom_sequence"/>
+                </div>
+            </xpath>
+        </field>
+    </record> -->
+    <record id="view_crm_lead_form_inherit_enquiry" model="ir.ui.view">
+        <field name="name">crm.lead.form.enquiry.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="custom_sequence" readonly="1"/>
+            </xpath>
+
+            <!-- Add Is Enquiry checkbox next to stage -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_enquiry"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="item_count" />
+            </xpath>
+            
+
+            <!-- Add Enquiry product lines under a notebook page -->
+            <!-- <xpath expr="//notebook" position="inside"> -->
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page string="Enquiry Lines" name="enquiry_lines_page">
+                    <field name="enquiry_line_ids">
+                        <list editable="bottom">
+                            <field name="sequence"/>
+                            <field name="product_id"/>
+                            <field name="item_id"/>
+                            <field name="customer_stock_code"/>
+                            <field name="name"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom_id"/>
+                            <field name="cost_type"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+            <!-- Add Smart buttons for Quotations and Sales Orders -->
+            <xpath expr="//header" position="inside">
+             <button name="action_reject_lead"
+                        string="Reject"
+                        type="object"
+                        class="btn btn-danger"
+                        />
+                <button name="action_create_quotation" type="object" string="Create Quotation" class="btn-primary"/>
+                <field name="quotation_ids" invisible="1"/>
+                <field name="sale_order_ids" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Add tree view quick list for enquiries if needed -->
+    <record id="view_crm_lead_tree_inherit_enquiry" model="ir.ui.view">
+        <field name="name">crm.lead.tree.enquiry.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Enquiry</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="custom_sequence" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

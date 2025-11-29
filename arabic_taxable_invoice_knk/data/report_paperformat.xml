@@ -13,5 +13,18 @@
             <field name="header_line" eval="False" />
             <field name="header_spacing">80</field>
         </record>
+
+         <record id="paperformat_custom_sale_order_report" model="report.paperformat">
+            <field name="name">Flexi Sales Order</field>
+            <field name="default" eval="False" />
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">85</field>
+            <field name="margin_bottom">80</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">80</field>
+        </record>
     </data>
 </odoo>

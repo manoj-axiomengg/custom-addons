@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <menuitem id="menu_crm_enquiry_root" name="Enquiries" parent="crm.crm_menu_root" sequence="50"/>
+    <menuitem id="menu_crm_enquiry_leads" name="Enquiries" parent="menu_crm_enquiry_root" action="crm.crm_case_all_leads_action"/> -->
+</odoo>

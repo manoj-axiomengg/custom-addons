@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_sale_quotation" model="ir.sequence">
+        <field name="name">Flexi Quotation</field>
+        <field name="code">sale.quotation</field>
+        <field name="prefix">FLEXI-QUON-%(month)s-%(y)s-</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+    </record>
+</odoo>

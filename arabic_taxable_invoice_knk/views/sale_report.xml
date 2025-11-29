@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================
+         MAIN SALE ORDER REPORT TEMPLATE
+       ================================ -->
+    <template id="report_saleorder_doc">
+            <!-- Set language context -->
+              <t t-call="custom_internal_layout_knk.custom_internal_layout">
+            <t t-set="o" t-value="o.with_context(lang=lang)" />
+
+            <!-- Your full styles & fonts -->
+            <style>
+                @font-face {
+                    font-family: 'Tajawal-Black';
+                    src: url(/arabic_taxable_invoice_knk/static/src/fonts/Tajawal-Black.ttf) format('opentype');
+                }
+                @font-face {
+                    font-family: 'Tajawal-Bold';
+                    src: url(/arabic_taxable_invoice_knk/static/src/fonts/Tajawal-Bold.ttf) format('opentype');
+                }
+                @font-face {
+                    font-family: 'Tajawal-Regular';
+                    src: url(/arabic_taxable_invoice_knk/static/src/fonts/Tajawal-Regular.ttf) format('opentype');
+                }
+                .black { font-family: Tajawal-Black; }
+                .regular { font-family: Tajawal-Regular; }
+                .table-border { border: 1px solid !important; }
+                table { margin-bottom: 3px !important; }
+                .table tr td { padding: 0.25rem 0.25rem !important; }
+            </style>
+
+            <!-- ===========================
+                  PAGE START
+            ============================ -->
+            <div class="page">
+
+               <div class="header">
+                <div class="col-12">
+                    <img t-if="o.company_id.knk_header1" t-att-src="image_data_uri(o.company_id.knk_header1)" style="max-height: 100; max-width: 100%" alt="Header"/>
+                </div>
+               
+                <div style="border-bottom: 1px solid #000; margin-top: 5px;"/>
+        <h2>
+            <div class="text-center">
+                <!-- <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice # </span> -->
+                <span>Sale Order</span>
+            </div>
+            <l/>
+        </h2>
+        <div class="row text-left">
+          <style>
+              .table-no-border td, 
+                .table-no-border th {
+                    border: none !important;
+                }
+                .table-value {
+                    padding-left: 6px;  /* adjust spacing after colon */
+                }
+            </style>
+            <div class="col-auto col-7">
+              <table class="table table-no-border" style="border: none !important;font-size: 15px; width: 100%;">
+                    <tbody style="border: none !important;">
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; width: 35%; border: 1px solid #000;line-height: 18px; ">
+                Customer 
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.partner_id.name"/>
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Address
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.partner_id.contact_address"/>
+                                <!--<span class="table-value" t-field="doc.partner_child_id.name"/>-->
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Ship To 
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.partner_shipping_id"/>
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Due Date
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <!--<span class="table-value" t-field="doc.x_studio_rfq_date"/>-->
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+               Delivery Date
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <!--<span class="table-value" t-field="doc.x_studio_rfq_deu_date"/>-->
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+               
+            </div>
+            
+            <div class="col-5">
+                <table class="table table-no-border" style="border: none !important;font-size: 13px; width: 100%;">
+                    <tbody style="border: none !important;">
+                     <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; width: 35%; border: 1px solid #000;line-height: 18px; ">
+                Sales Order# 
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.name"/>
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Date
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.date_order" t-options="{'widget': 'date'}"/>
+                            </td>
+                        </tr>
+                       
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                KWGM Qtn.#
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.x_kwgm_qtn"/>
+                            </td>
+                        </tr>
+                        
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Cust. PO#
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.client_order_ref"/>
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Cust. PO Type
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.x_cust_po_type"/>
+                            </td>
+                        </tr>
+                       
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Contract#
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.x_contract_no"/>
+                            </td>
+                        </tr>
+                        <tr style="border: none !important;">
+                            <td style="font-weight: bold; padding: 2px 4px; border: 1px solid #000;line-height: 18px; ">
+                Payment Terms
+            </td>
+                            <td style="padding: 2px 4px; border: 1px solid #000;">
+                                :
+                                <span class="table-value" t-field="o.payment_term_id"/>
+                            </td>
+                        </tr>
+                        
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+     
+                <style>
+                        .table-border {
+                        border: 1px solid !important;
+                        }
+                        table{
+                        margin-bottom: 3px !important;
+                        }
+                        .product_block td{
+                        border-right: 1px solid;
+
+                        border-top: 0px !important;
+                        
+                    <!-- padding: 5px 0px 5px 0px !important; -->
+                        }
+                        .table tr td{
+                            padding: 0.2rem 0.2rem !important;
+                        }
+                    
+                </style>
+           
+            </div>
+              <!-- <div class="col-12" style="margin-top: 2px;  margin-bottom: 2px; font-size: 15px;">
+                <div style="padding: 5px 5px; ">
+                    <strong>Dear Sir,</strong>
+                    <br/>
+                    <p style="margin: 0;"> With reference to your above enquiry, please find our offer which we hope meets your requirements</p>
+                </div>
+            </div> -->
+            
+             <table class="table table-bordered">
+                    <thead style="font-size:15px;">
+                    
+                        <tr class="black" style="background-color: #dfdfdf;">
+                           <th style="width:5%;">SL.No</th>
+                            <th style="width:20%;">STOCK CODE</th>
+                            <th style="width:32%;">DESCRIPTION</th>
+                            <th style="width:8%;">QTY</th>
+                            <th style="width:10%;">UNIT</th>
+                            <!-- <th style="width:12%;">UNIT PRICE</th>
+                            <th t-if="display_discount" style="width:10%;">DISCOUNT</th>
+                            <th style="width:25%;">AMOUNT</th> -->
+                        </tr>
+                    </thead>
+                      <tbody class="sale_tbody">
+
+        <!-- SL number start -->
+        <t t-set="sl_no" t-value="1"/>
+
+        <t t-foreach="o.order_line" t-as="l">
+            <tr>
+
+                <!-- SL No -->
+                <td class="text-center">
+                    <t t-esc="sl_no"/>
+                    <t t-set="sl_no" t-value="sl_no + 1"/>
+                </td>
+
+                <!-- PRODUCT CODE -->
+                <td>
+                    <t t-esc="l.product_id.default_code"/>
+                    </td>
+
+                <!-- DESCRIPTION -->
+                <td>
+                    <t t-esc="l.name"/>
+                    </td>
+
+                <!-- QTY -->
+                <td class="text-center">
+                    <t t-esc="l.product_uom_qty"/>
+                </td>
+
+                <!-- UNIT -->
+                <td class="text-center">
+                    <t t-esc="l.product_uom_id.name or ''"/>
+                </td>
+
+                <!-- UNIT PRICE -->
+                <!-- <td class="text-center">
+                    <t t-esc="l.price_unit"/>
+                </td> -->
+
+                <!-- DISCOUNT -->
+                <!-- <td t-if="display_discount" class="text-center">
+                    <t t-esc="l.discount"/>%
+                </td> -->
+
+                <!-- AMOUNT -->
+                <!-- <td class="text-center">
+                    <t t-esc="l.price_subtotal"/>
+                </td> -->
+
+            </tr>
+        </t>
+
+    </tbody>
+                
+                </table>
+            
+              
+          <!-- <table class="table table-bordered" style="width:100%; margin-top:5px; font-size:15px;">
+    <tr>
+        <td style="padding:4px; width:70%; font-weight:bold;">
+            Amount in Words:
+            <span style="margin-left:10px; font-weight:normal;">
+                <t t-out="o.currency_id.amount_to_text(o.amount_total)"/>
+            </span>
+        </td>
+
+        <td style="padding:4px; width:15%; font-weight:bold; text-align:right;">
+            Total
+        </td>
+
+        <td style="padding:4px; width:15%; text-align:right;">
+            <t t-esc="o.amount_total"/>
+        </td>
+    </tr>
+</table> -->
+
+            <div class="footer">
+                
+                <div class="text-center mt-2">
+                    <!-- <span class="text-center" style="text-align: center"> -->
+                        <img t-if="o.company_id.knk_footer" t-att-src="image_data_uri(o.company_id.knk_footer)" style="max-height: 100; max-width: 100%" alt="footer"/>
+                    <!-- </span> -->
+                </div>
+        <div t-if="report_type == 'pdf'" class="text-muted text-center ">
+            Page: 
+                <span class="page"/> / 
+                <span class="topage"/>
+            </div>
+            </div>
+            </div>
+        </t>
+         
+        
+    </template>
+
+    <!-- ================================
+         REPORT WRAPPER
+       ================================ -->
+    <template id="report_saleorder">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="arabic_taxable_invoice_knk.report_saleorder_doc" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- ================================
+         REPORT ACTION
+       ================================ -->
+    
+
+</odoo>

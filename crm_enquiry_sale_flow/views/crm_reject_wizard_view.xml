@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_crm_reject_form" model="ir.ui.view">
+        <field name="name">crm.reject.wizard.form</field>
+        <field name="model">crm.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reject Lead">
+                <group>
+                    <field name="rejection_reason" placeholder="Enter reason..." />
+                </group>
+                <footer>
+                    <button string="Reject" type="object" name="action_reject" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_reject_lead_wizard" model="ir.actions.act_window">
+        <field name="name">Reject Lead</field>
+        <field name="res_model">crm.reject.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

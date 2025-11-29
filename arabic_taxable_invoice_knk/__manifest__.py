@@ -14,6 +14,7 @@
         "views/sale_order_view.xml",
         "views/invoice_report.xml",
         "views/account_move_views.xml",
+        "views/sale_report.xml",
         "views/res_company.xml",
          
     ],
